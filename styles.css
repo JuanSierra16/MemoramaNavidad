@@ -27,17 +27,22 @@
     overflow-y: hidden;
 }
 
+/* selector a la etiqueta p para cambiarle su alineacion del texto al centro
+    y su tamaño de fuente com una medida relativa a la fuente del contenedor padre. */
 p{
     text-align: justify;
     font-size: 1rem;
 
 }
 
+/* selector a la etiqueta img para que tenga un ancho maximo y un alto maximo
+    de todo el que ocupe su contenedor padre */
 img{
     max-width: 100%;
     max-height: 100%;
 }
 
+/* Estilos aplicados al modal del inicio */
 .modal-intro{
     background-color: rgba(1, 0, 0, 0.72);
     position: absolute;
@@ -47,14 +52,14 @@ img{
     padding-top: 5%;
 }
 
-/* clase para añadir la animacion inicial a los elementos del modal inicial */
+/* clase para añadir la animacion inicial a los elementos del modal del inicio */
 .entrada-inicial img,button{
     animation: bounceIn 1.5s backwards;
 }
 
 /* Animacion de rebote*/
 @keyframes bounceIn {
-
+    /* Porcentajes que significan la vida de la animacion, cunado empieza, cuando avanza un poco mas, cuando termina */
     0%,
     20%,
     40%,
@@ -64,14 +69,14 @@ img{
         -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
         animation-timing-function: cubic-bezier(.215, .61, .355, 1);
     }
-
+    /* Se va escalando en 3d */
     0% {
         -webkit-transform: scale3d(.3, .3, .3);
         opacity: 0;
         transform: scale3d(.3, .3, .3);
     }
 
-    20% {
+    20% {/* propiedad -web-kit-transform sirve para que haya compatibilidad con todos los navegadores */
         -webkit-transform: scale3d(1.1, 1.1, 1.1);
         transform: scale3d(1.1, 1.1, 1.1);
     }
@@ -100,10 +105,13 @@ img{
 }
 /* ----------------------------------------- */
 
+/* Al modal del juego, el que contiene la imagen,texto y boton del pesebre, se le centra su contenido */
 .modal-contenido div{
     justify-content: center;
 }
 
+/* Contenedor del modal que aparece al inicio, se selecciona y se le aplican estilos para definir
+su tamaño, alinear sus elementos y definir margenes. */
 .modal-contenedor{
     max-height: 90%;
     max-width: 1200px;
@@ -121,6 +129,9 @@ img{
     margin-right: auto;
 }
 
+/* Estilos para el contenedor del modal del juego, que contiene
+   las imagenes del pesebre y que se muestra cada vez que una pareja
+   coincide. */
 .modal-game-contenido{
     background-color: #fff;
     border: 8px solid var(--color1);
@@ -130,6 +141,9 @@ img{
     max-width: 1000px;
 }
 
+/* Estilos para las columnas que hay dentro del modal del pesebre,
+   existe una columna para la imagen del pesebre y otra para el texto
+   que se muestra para cada pareja y el boron de continuar */
 .columnas-pesebre{
     display: grid;
     grid-template-columns: 60% 1fr;
@@ -142,6 +156,8 @@ img{
     background-blend-mode: color-burn
 }
 
+/* Estilos para la imagen del copo de nieve que va a la izquierda del boton
+dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una animación para que rote*/
 .columna-contenido .copo1{
     position: absolute;
     bottom: 5%;
@@ -151,6 +167,8 @@ img{
     animation: 2.5s rotate alternate-reverse infinite;
 }
 
+/* Estilos para la imagen del copo de nieve que va a la derecha del boton
+dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una animación para que rote*/
 .columna-contenido .copo2{
     position: absolute;
     bottom: 5%;
@@ -160,15 +178,7 @@ img{
     animation: 2.5s rotate alternate-reverse infinite;
 }
 
-.columna-contenido .copo1{
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-    width: 30px;
-    height: auto;
-    animation: 2.5s rotate alternate-reverse infinite;
-}
-
+/* Animacion utilizada para rotar los copos de nieve, rotandolos desde 0 grados hasta 360 grados */
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -179,6 +189,7 @@ img{
     }
 }
 
+/* Estilos para la columna del modal game que contiene la imagen del pesebre */
 .columna-imagen-pesebre{
     padding: 15px;
     background-color: var(--color1);
@@ -221,7 +232,7 @@ img{
     position: relative;
 }
 
-/* clase para los elementos del modal del pescebre */
+/* clases para los elementos del modal del pescebre */
 .modal-baltazar{
     position: absolute;
     left: 25.3%;
@@ -338,6 +349,8 @@ img{
     display: none;
 }
 
+
+/* clase para ponerle la animacion de las cartas */
 .animation-card {
     animation: zoom .5s ease backwards;
 }
