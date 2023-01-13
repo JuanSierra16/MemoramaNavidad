@@ -41,12 +41,31 @@ let state = [0, null];//Array that serves to know if the couples match
 //Function used to create all cards
 function createCards(game){
     let clone;//variable used to store a clone of the card
+    let id=0;//variable used to add an id to the cards for the entrance animation
     pairs.forEach(pair =>{
         clone = templateCard.cloneNode(true);//the card is cloned
         clone.querySelector(".card-back").classList.add(pair.nombre);//add an array class to the clone
         clone.querySelector(".card-back").style.backgroundImage = `url(${pair.url})`;//its corresponding image is added to the name of the class
+        clone.querySelector(".card-inner").setAttribute("id", "tarjeta"+id);//Add an id for the card
+        clone.querySelector(".card-inner").classList.add("none");//add a class to the letter to hide it
+        id++;//increase the id value by 1
         game.appendChild(clone);//the card is added to the parent container
     });
+    addCardsAnimation();
+}
+
+//Add initial animation to the cards
+function addCardsAnimation(){
+    for (let n = 0; n < 16; n++) { //animation of each card at the entrance
+        let cards_n = document.getElementById("tarjeta" + n) //we get the content inside the tag
+        setTimeout(() => { //delay
+            cards_n.classList.toggle("none"); //quitarle la clase none para que se muestre la tarjeta
+        }, 200 + (150 * n));
+
+        setTimeout(() => { //delay
+            cards_n.classList.add("animation-card"); //We add the cardAnimation class so that the animation can be seen
+        }, 200 + (150 * n));
+    }
 }
 
 //Flips the card (animation)
