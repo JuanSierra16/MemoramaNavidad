@@ -1,13 +1,12 @@
 //Start at the top
 window.scrollTo(0, 0);
 
-
 //Shuffle an array's content
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-//Array containing all possible cards and their images
+//Object array containing all cards and their images
 let pairs = [ 
     {nombre: 'maria', url : 'img/parejas-001.png'},
     {nombre: 'maria', url : 'img/parejas-001.png'},
@@ -26,27 +25,27 @@ let pairs = [
     {nombre: 'mula', url : 'img/parejas-008.png'},
     {nombre: 'mula', url : 'img/parejas-008.png'},
 ];
-shuffle(pairs);
-
+shuffle(pairs);//function call to shuffle the cards
 
 //Creating game objects and state variables
-const startBtn = document.getElementById("btn-comenzar");
-const gameBtn = document.getElementById("btn-juego");
-const gameModal = document.getElementById("modal-juego");
-const textModal = document.getElementById("texto");
-const game = document.getElementById("game");
-let counter = 0;
-let beat = new Audio('');
-let templateCard = document.getElementById("template-card").content;
-let state = [0, null];
+const startBtn = document.getElementById("btn-comenzar");//I keep the start button in a constant
+const gameBtn = document.getElementById("btn-juego");//The continue button is obtained and stored in a constant
+const gameModal = document.getElementById("modal-juego");////The game-modal is obtained by ID and stored in a constant
+const textModal = document.getElementById("texto");//Paragraph where the modal message is displayed
+const game = document.getElementById("game");//Get the container of all cards
+let counter = 0;//Found pairs counter
+let beat = new Audio('');//variable used to store the different audios
+let templateCard = document.getElementById("template-card").content;//The content of the template is obtained and saved in a variable
+let state = [0, null];//Array that serves to know if the couples match
 
+//Function used to create all cards
 function createCards(game){
-    let clone;
+    let clone;//variable used to store a clone of the card
     pairs.forEach(pair =>{
-        clone = templateCard.cloneNode(true);
-        clone.querySelector(".card-back").classList.add(pair.nombre);
-        clone.querySelector(".card-back").style.backgroundImage = `url(${pair.url})`;
-        game.appendChild(clone);
+        clone = templateCard.cloneNode(true);//the card is cloned
+        clone.querySelector(".card-back").classList.add(pair.nombre);//add an array class to the clone
+        clone.querySelector(".card-back").style.backgroundImage = `url(${pair.url})`;//its corresponding image is added to the name of the class
+        game.appendChild(clone);//the card is added to the parent container
     });
 }
 
@@ -57,7 +56,6 @@ const flipCard = card => card.parentNode.classList.toggle('is-flipped');
 function checkState(state, target){
     switch (state[0]){
         case 1:
-            playAudio('incorrecta');
             state[1] = target;
             break;
         case 2:
@@ -108,78 +106,50 @@ function winnerModal(objectClass){
     gameBtn.innerText = 'Volver a intentar';
 }
 
+
+
 //Sets some text according to the class
 function setModalText(objectClass){
-    let string = ''
-    switch(objectClass){
-        case 'melchor':
-            string = 'El villancico es un género de cancion cuya letra hace referencia a la navidad.';
-            break;
-        case 'baltazar':
-            string = 'A la nanita nana es un villancio compuesto por Jeremías Quinetero, oriundo de Barbacoas, Nariño.';
-            break;
-        case 'gaspar':
-            string = 'La palabra tutaina es utilizada en Perú para referirse coloquialmente a una fiesta pequeña, por lo que el título de este villancico se refiere a la celebración de la tradicional novena de aguinaldos.';
-            break;
-        case 'jose':
-            string = 'En Ecuador, México, Colombia, Guatemala, El Salvador, Venezuela, Perú, Argentina, Chile y Canarias, la figura del niño Jesús se coloca despúes de la llegada de la navidad.';
-            break;
-        case 'pastor':
-            string = 'A las novenas se les llama "Las posadas" y son fiestas populares de Mexico, Honduras, Guatemala, El Salvador, Costa Rica, Nicaragua y Panamá.';
-            break;
-        case 'mula':
-            string = 'En las posadas, cada uno de los nueve días representa un valor, como humildad, fortaleza, desapego, caridad, confianza, justicia, pureza, alegría y generosidad.';
-            break;
-        case 'jesus':
-            string = 'El villancico es un género de canción cuya letra hace referencia a la navidad.';
-            break;
-        case 'maria':
-            string = 'La primera celebración navideña en la que se montó un pesebre para la conmemoraciónd del nacimiento de Jesús fue en la nochebuena del año 1223, realizada por San Francisco de Asís.';
-            break;
+
+    //object with the texts for each class
+    const TEXTOS = {
+        'melchor': 'El villancico es un género de cancion cuya letra hace referencia a la navidad.',
+        'baltazar': 'A la nanita nana es un villancio compuesto por Jeremías Quintero, oriundo de Barbacoas, Nariño.',
+        'gaspar': 'La palabra tutaina es utilizada en Perú para referirse coloquialmente a una fiesta pequeña, por lo que el título de este villancico se refiere a la celebración de la tradicional novena de aguinaldos.',
+        'jose': 'En Ecuador, México, Colombia, Guatemala, El Salvador, Venezuela, Perú, Argentina, Chile y Canarias, la figura del niño Jesús se coloca despúes de la llegada de la navidad.',
+        'pastor': 'A las novenas se les llama "Las posadas" y son fiestas populares de Mexico, Honduras, Guatemala, El Salvador, Costa Rica, Nicaragua y Panamá.',
+        'mula': 'En las posadas, cada uno de los nueve días representa un valor, como humildad, fortaleza, desapego, caridad, confianza, justicia, pureza, alegría y generosidad.',
+        'jesus': 'El villancico es un género de canción cuya letra hace referencia a la navidad.',
+        'maria': 'La primera celebración navideña en la que se montó un pesebre para la conmemoraciónd del nacimiento de Jesús fue en la nochebuena del año 1223, realizada por San Francisco de Asís.'
     }
+    
+    //saves the text for the specified class
+    const string = TEXTOS[objectClass];
+
     return string;
 }
 
 //Loads each audio to the beat
 function playAudio(string){
-    switch (string){
-        case 'intro':
-            beat = new Audio('Audio/intro.mp3');
-            break;
-        case 'final':
-            beat = new Audio('Audio/final.mp3');
-            break;
-        case 'melchor':
-            beat = new Audio('Audio/pareja1.mp3');
-            break;
-        case 'baltazar':
-            beat = new Audio('Audio/pareja2.mp3');
-            break;
-        case 'gaspar':
-            beat = new Audio('Audio/pareja3.mp3');
-            break;
-        case 'jose':
-            beat = new Audio('Audio/pareja4.mp3');
-            break;
-        case 'pastor':
-            beat = new Audio('Audio/pareja5.mp3');
-            break;
-        case 'mula':
-            beat = new Audio('Audio/pareja6.mp3');
-            break;
-        case 'jesus':
-            beat = new Audio('Audio/pareja7.mp3');
-            break;
-        case 'maria':
-            beat = new Audio('Audio/pareja8.mp3');
-            break;
-        case 'correcta':
-            beat = new Audio('Audio/correcta.mp3');
-            break;
-        case 'incorrecta':
-            beat = new Audio('Audio/incorrecta.mp3');
-            break;
+
+    //object with the audios for each class
+    const AUDIOS = {
+        'intro': 'Audio/intro.mp3',
+        'final': 'Audio/final.mp3',
+        'melchor': 'Audio/pareja1.mp3',
+        'baltazar': 'Audio/pareja2.mp3',
+        'gaspar': 'Audio/pareja3.mp3',
+        'jose': 'Audio/pareja4.mp3',
+        'pastor': 'Audio/pareja5.mp3',
+        'mula': 'Audio/pareja6.mp3',
+        'jesus': 'Audio/pareja7.mp3',
+        'maria': 'Audio/pareja8.mp3',
+        'correcta': 'Audio/correcta.mp3',
+        'incorrecta': 'Audio/incorrecta.mp3'
     }
+
+    //an audio object is instantiated for the audio corresponding to the class
+    beat = new Audio(AUDIOS[string]);
     beat.play();
 }
 
@@ -198,12 +168,14 @@ game.addEventListener('click', event =>{
     event.stopPropagation();
 });
 
+//Evet Listener for continue button
 startBtn.addEventListener('click', ()=> {
     startBtn.parentNode.parentNode.parentNode.classList.toggle('hide-modal');
     document.querySelector('body').classList.toggle('no-scroll')
     playAudio('intro')
 });
 
+//Evet Listener for start button
 gameBtn.addEventListener('click', ()=> {
     if (counter == 8) location.reload();
     gameBtn.parentNode.parentNode.parentNode.parentNode.parentNode.classList.toggle('hide-modal');

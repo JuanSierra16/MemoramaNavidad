@@ -33,8 +33,17 @@ img{
     width: 100%;
     height: 100%;
     z-index: 10;
-    padding-top: 10%;
-    
+    padding-top: 5%;
+}
+
+.entrada-inicial {
+    animation: latidos .5s 2;
+}
+
+@keyframes latidos {
+    from { transform: none; }
+    50% { transform: scale(1.4); }
+    to { transform: none; }
 }
 
 .modal-contenido div{
@@ -302,8 +311,6 @@ img{
     text-decoration: none;
 }
 
-
-
 .header-content{
     color: #5fa3a5;
     font-weight: bold;
@@ -330,18 +337,9 @@ img{
     background-image: url(https://www.escueladidactica.com/navidad/2022/img/estrellas-bg.png), url(https://www.escueladidactica.com/navidad/2022/img/background.png);
     width: 100%;
     height: 180vh;
-    padding: 10% 10% 20% 10%;
-
+    padding-top: 40px;
+    padding-bottom: 80px;
 }
-
-/* .game{
-    display: grid;
-    background-color: transparent;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 0;
-    width: 100%;
-    height: 100%;
-} */
 
 .game{
     display: flex;
@@ -349,13 +347,11 @@ img{
     flex-wrap: wrap;
     background-color: transparent;
     padding: 0;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    height: 1000px;
 }
-
-/* .template-card {
-    width: 100%;
-} */
 
 .carta {
     width: 25%;
@@ -513,5 +509,71 @@ footer{
     
     #big-row{
         display: none;
+    }
+}
+
+/* MEDIA QUERIES PARA CONTENEDOR TARJETAS */
+
+@media(max-width:830px){
+    .game {
+        height: 100%;
+    }
+    
+    .content {
+        height: 80vh;
+    }
+}
+@media(max-width:760px){
+    .game {
+        height: 100%;
+    }
+    
+    .content {
+        height: 70vh;
+    }
+}
+@media(max-width:630px){
+    .game {
+        height: 100%;
+    }
+    
+    .content {
+        height: 60vh;
+    }
+}
+@media(max-width:530px){
+    .game {
+        height: 100%;
+    }
+    
+    .content {
+        height: 50vh;
+    }
+}
+@media(max-width:430px){
+    .game {
+        height: 100%;
+    }
+    
+    .content {
+        height: 40vh;
+    }
+}
+@media(max-width:330px){
+    .game {
+        height: 100%;
+    }
+    
+    .content {
+        height: 30vh;
+    }
+}
+@media(max-width:230px){
+    .game {
+        height: 100%;
+    }
+    
+    .content {
+        height: 20vh;
     }
 }
