@@ -3,7 +3,7 @@ window.scrollTo(0, 0);
 
 //Shuffle an array's content
 function shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
+    return array.sort(() => Math.random() - 0.5);//returns the random scrambled array
 }
 
 //Object array containing all cards and their images
@@ -50,32 +50,32 @@ function createCards(game){
 }
 
 //Flips the card (animation)
-const flipCard = card => card.parentNode.classList.toggle('is-flipped');
+const flipCard = card => card.parentNode.classList.toggle('is-flipped');//swap the class to flip the card
 
 //Game functionality
-function checkState(state, target){
+function checkState(state, target){//in case the state in position 0
     switch (state[0]){
         case 1:
-            state[1] = target;
+            state[1] = target;//the array in position 1 will be equal to the card
             break;
         case 2:
-            setTimeout(() => {
-                if (state[1].classList[2] == target.classList[2]){
-                    counter++;
-                    playAudio('correcta');
-                    state[0] = 0;
-                    if (counter == 8){
-                        winnerModal(state[1].classList[2]);
+            setTimeout(() => {//function to control that something happens in a certain time
+                if (state[1].classList[2] == target.classList[2]){//if the classes are the same
+                    counter++; //increases the counter of pairs found
+                    playAudio('correcta');//play the correct audio
+                    state[0] = 0; //set the value to 0
+                    if (counter == 8){ //if all pairs have been found
+                        winnerModal(state[1].classList[2]);//the winner modal is displayed
                     } else{
-                        setTimeout(()=>playAudio(state[1].classList[2]), 300)
-                        updateModal(state[1].classList[2]);
+                        setTimeout(()=>playAudio(state[1].classList[2]), 300)//wait for a while and play the corresponding audio
+                        updateModal(state[1].classList[2]);//update game modal
                     }
                     return;
                 }
-                playAudio('incorrecta');
-                flipCard(state[1]);
-                flipCard(target);
-                state[0] = 0;
+                playAudio('incorrecta');//play the incorrect audio
+                flipCard(state[1]);//flip the card
+                flipCard(target);//flip the card
+                state[0] = 0; //set the value to 0
             }, 800)
             break;
     }
@@ -83,27 +83,27 @@ function checkState(state, target){
 
 //Modal funcitonality
 function updateModal(objectClass){
-    window.scrollTo(0, 0);
-    gameModal.classList.toggle("hide-modal");
-    document.querySelector('body').classList.toggle('no-scroll');
-    document.querySelector('.modal-'+ objectClass).classList.toggle('show-item');
-    textModal.innerText = setModalText(objectClass);
-    setTimeout(() => {
-        document.querySelector('.modal-' + objectClass).classList.toggle('show-item');
-        document.querySelector('.modal-' + objectClass).classList.toggle('hide-modal');
+    window.scrollTo(0, 0);//Start at the top
+    gameModal.classList.toggle("hide-modal");//swap the class to hide the modal
+    document.querySelector('body').classList.toggle('no-scroll');//swap the class to scroll or not-scroll
+    document.querySelector('.modal-'+ objectClass).classList.toggle('show-item');//swap the class to display the image in the manger modal
+    textModal.innerText = setModalText(objectClass);//puts the text corresponding to that class
+    setTimeout(() => {//function to control that something happens in a certain time
+        document.querySelector('.modal-' + objectClass).classList.toggle('show-item');//swap the class to display the image in the manger modal
+        document.querySelector('.modal-' + objectClass).classList.toggle('hide-modal');//swap the class to hide the modal
     }, 3000);
 }
 
 //Winner modal
 function winnerModal(objectClass){
-    window.scrollTo(0, 0);
-    playAudio('final');
-    document.querySelector('.modal-'+ objectClass).classList.toggle('show-item');
-    gameModal.classList.toggle("hide-modal");
-    document.querySelector('body').classList.toggle('no-scroll');
-    document.querySelector('.modal-titulo').innerText = 'Armaste tu pesebre';
-    textModal = 'Y junto con la esperanza de la llegada del Niño Dios te deseamos de todo corazón que ese regalo que tanto has anhelado llegue a ti en esta navidad.';
-    gameBtn.innerText = 'Volver a intentar';
+    window.scrollTo(0, 0);//Start at the top
+    playAudio('final');//play the audio final
+    document.querySelector('.modal-'+ objectClass).classList.toggle('show-item');//swap the class to show-item
+    gameModal.classList.toggle("hide-modal");////swap the class to hide the modal
+    document.querySelector('body').classList.toggle('no-scroll');//swap the class to scroll or not-scroll
+    document.querySelector('.modal-titulo').innerText = 'Armaste tu pesebre';//change the title of the modal text
+    textModal = 'Y junto con la esperanza de la llegada del Niño Dios te deseamos de todo corazón que ese regalo que tanto has anhelado llegue a ti en esta navidad.';//change the text of the modal
+    gameBtn.innerText = 'Volver a intentar';//change button text
 }
 
 
@@ -150,37 +150,38 @@ function playAudio(string){
 
     //an audio object is instantiated for the audio corresponding to the class
     beat = new Audio(AUDIOS[string]);
-    beat.play();
+    beat.play();//play the audio
 }
 
 //Detects when a card is clicked and apllies game functionality
 game.addEventListener('click', event =>{
-    const target = event.target;
-    const card = target.parentNode.children[1];
+    const target = event.target; //the target is equal to the card clicked
+    const card = target.parentNode.children[1];//card is equal as the back of the card, where the image and the class are
 
-    if (state[1] != null && state[0] == 2) return;
-    if (!(target.classList.contains('card-face'))) return;
-    if ((target.parentNode.classList.contains('is-flipped'))) return;
+    //conditions to check the functionality of the game
+    if (state[1] != null && state[0] == 2) return;//if the state in position 0 is different from null and in position 1 it is equal to 2
+    if (!(target.classList.contains('card-face'))) return;//if the target does not contain the card-face class
+    if ((target.parentNode.classList.contains('is-flipped'))) return;//if the parent node contains the class is-flipped
     
-    flipCard(target);
-    state[0]++;
-    checkState(state, card);
-    event.stopPropagation();
-});
-
-//Evet Listener for continue button
-startBtn.addEventListener('click', ()=> {
-    startBtn.parentNode.parentNode.parentNode.classList.toggle('hide-modal');
-    document.querySelector('body').classList.toggle('no-scroll')
-    playAudio('intro')
+    flipCard(target);//flip the card
+    state[0]++;//increases the status value at position 0 by 1
+    checkState(state, card);//calls the check state function and passes it the state and the target
+    event.stopPropagation();//stops propagation of events
 });
 
 //Evet Listener for start button
-gameBtn.addEventListener('click', ()=> {
-    if (counter == 8) location.reload();
-    gameBtn.parentNode.parentNode.parentNode.parentNode.parentNode.classList.toggle('hide-modal');
-    document.querySelector('body').classList.toggle('no-scroll')
-    beat.pause();
+startBtn.addEventListener('click', ()=> {
+    startBtn.parentNode.parentNode.parentNode.classList.toggle('hide-modal');//swap the class to hide the modal
+    document.querySelector('body').classList.toggle('no-scroll');//change the class to not scroll
+    playAudio('intro');//play the intro audio
 });
 
-createCards(game);
+//Evet Listener for game button
+gameBtn.addEventListener('click', ()=> {
+    if (counter == 8) location.reload();//If all the couples have already been found, reload the page
+    gameBtn.parentNode.parentNode.parentNode.parentNode.parentNode.classList.toggle('hide-modal');//swap the class to hide the modal
+    document.querySelector('body').classList.toggle('no-scroll');////change the class to not scroll
+    beat.pause();//pause the audio
+});
+
+createCards(game);//function call to create the cards inside the game container
