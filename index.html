@@ -1,3 +1,8 @@
+<!-- Author: Ing(c) Juan Jose Sierra Arroyave -->
+<!-- Primer BootCamp "piscina-42" UTP sobre fullstack-->
+<!-- Date: 2023-01-13 -->
+<!-- Universidad Tecnologica de Pereira -->
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,20 +16,26 @@
     <title>Armemos el Pesebre de Navidad</title>
   </head>
   <body class="no-scroll">
+    <!-- Contenedor del modal que aparece al inicio -->
     <div id="modal-intro" class="modal-intro entrada-inicial">
         <div class="modal-contenido">
+            <!-- Imagen del modal -->
             <div class="row">
                 <img src="img/modal-intro.png" alt="modal">
             </div>
+            <!-- Boton del modal -->
             <div class="row">
                 <button id="btn-comenzar" class="btn-comenzar">Comenzar</button>
             </div>
         </div>
     </div>
+
+    <!-- Modal que se actualiza cuando se encuentra un pareja -->
     <div id="modal-juego" class="modal-intro hide-modal">
         <div class="modal-contenedor">
             <div class="modal-game-contenido">
                 <div class="columnas-pesebre">
+                    <!-- Contenedor de la imagen del pesebre -->
                     <div class="columna-imagen-pesebre">
                         <img src="img/modal/baltazar.png" alt="baltazar" class="modal-baltazar">
                         <img src="img/modal/gaspar.png" alt="gaspar" class="modal-gaspar">
@@ -35,13 +46,14 @@
                         <img src="img/modal/jose.png" alt="jose" class="modal-jose">
                         <img src="img/modal/pastor.png" alt="pastor" class="modal-pastor">
                     </div>
+                    <!-- Contenedor de la columna del contenido del modal del juego -->
                     <div class="columna-contenido">
                         <div class="modal-titulo">Sabias que</div>
-                        <p id="texto">
+                        <p id="texto"><!-- Texto que se ira actualizando dependiendo de la pareja de cartas -->
 
                         </p>
-                        <button id="btn-juego" class="btn-comenzar">Continuar</button>
-                        <img class="copo1" src="img/modal/copo.png">
+                        <button id="btn-juego" class="btn-comenzar">Continuar</button><!-- Boton para continuar luego de que aparezca el modal -->
+                        <img class="copo1" src="img/modal/copo.png"><!-- Imagenes de los copos -->
                         <img class="copo2" src="img/modal/copo.png">
                     </div>
                 </div>
@@ -49,6 +61,7 @@
         </div>
     </div>
     <header>
+        <!-- Contenedor que contiene todo los elementos del header -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 d-flex justify-content-center">
@@ -61,8 +74,11 @@
             </div>
         </div>
     </header>
+
+    <!-- Botones ubicados a la inquierda que contienen las redes sociales -->
     <div class="botonesizquierda">
 
+        <!-- Enlaces con las redes sociales -->
         <a class="btn2-circulo" href="https://twitter.com/intent/tweet?text=&url=https://www.escueladidactica.com/navidad/2022" target="_blank"rel="noopener noreferrer"><img src="img\sharedTwitter.png" alt="twitter"></a>
         <br>
         <a class="btn2-circulo" href="https://www.facebook.com/login.php?skip_api_login=1&api_key=966242223397117&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fsharer%2Fsharer.php%3Fu%3Dhttps%253A%252F%252Fwww.escueladidactica.com%252Fnavidad%252F2022%26t&cancel_url=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fclose_window%2F%3Fapp_id%3D966242223397117%26connect%3D0%23_%3D_&display=popup&locale=es_ES" target="_blank"rel="noopener noreferrer"><img src="img\sharedFacebook.png" alt="facebook"></a>
@@ -74,6 +90,7 @@
     </div>
     <main>
         <div class="content">
+            <!-- Contenedor de las tarjetas -->
             <div id="game" class="game">
                 
             </div>
@@ -82,6 +99,7 @@
     </main>
 	
     <footer>
+        <!-- Footer grande para cuando el tamaño de la pantalla es mas grande -->
         <div class="container-fluid">
             <div id="big-row" class="row">
                 <div class="col footer-content">
@@ -102,6 +120,7 @@
 
                 </div>
             </div>
+            <!-- Footer pequeño para cuando la pantalla es pequeña -->
             <div id="small-row" class="row">
                 <div class="col d-flex justify-content-start">
                     <p id="siguenos">Síguenos</p>
@@ -119,14 +138,16 @@
         </div>
     </footer>
 	
+    <!-- Template que contiene la estructura de cada tarjeta -->
 	<template id="template-card">
 		<div class="carta">
 			<div class="card-inner">
-				<div class="card-face card-front"></div>
-				<div class="card-face card-back"></div>
+				<div class="card-face card-front"></div><!-- Contenedor donde va la cubierta de la carta -->
+				<div class="card-face card-back"></div><!-- Contenedor donde va la imagen de la carta -->
 			</div>
 		</div>
 	</template>
   </body>
+  <!-- Relacion al archivo .js -->
   <script src="app.js"></script>
 </html>

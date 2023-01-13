@@ -1,3 +1,10 @@
+/*
+    Author: Juan Jose Sierra Arroyave Ing(c)
+    Primer BootCamp "piscina-42" UTP sobre fullstack
+    Date: 2023-01-13
+    Universidad Tecnologica de Pereira
+ */
+
 //Start at the top
 window.scrollTo(0, 0);
 

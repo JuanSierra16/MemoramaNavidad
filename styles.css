@@ -1,9 +1,19 @@
+/* Author: Juan Jose Sierra Arroyave Ing(c) 
+    Primer BootCamp "piscina-42" UTP sobre fullstack
+    Date: 2023-01-13
+    Universidad Tecnologia de Pereira
+*/
+
+/* Importacion de la fuente utilizada en la pagina */
 @import url('https://fonts.cdnfonts.com/css/arlon');
 
+/* Estilos iniciales aplicados al documento */
 *{
     margin: 0;
     padding: 0;
 }
+
+/* Se guarda en variables propiedades necesarias para acceder a ellos luego desde cualquier lugar del css */
 :root{
     --fuenteTitulo: 'Arlon', sans-serif;
     --color_background: #F2D272;
@@ -12,6 +22,7 @@
     --colorborde: hsl(38, 77%, 59%);
 }
 
+/* clase que hace que no se pueda hacer scroll vertical en la pagina */
 .no-scroll{
     overflow-y: hidden;
 }
@@ -36,15 +47,9 @@ img{
     padding-top: 5%;
 }
 
+/* clase para añadir la animacion inicial a los elementos del modal inicial */
 .entrada-inicial img,button{
-    /* animation: latidos .5s 2; */
     animation: bounceIn 1.5s backwards;
-}
-
-@keyframes latidos {
-    from { transform: none; }
-    50% { transform: scale(1.4); }
-    to { transform: none; }
 }
 
 /* Animacion de rebote*/
@@ -216,6 +221,7 @@ img{
     position: relative;
 }
 
+/* clase para los elementos del modal del pescebre */
 .modal-baltazar{
     position: absolute;
     left: 25.3%;
@@ -286,6 +292,7 @@ img{
     transform-origin: top center;
 }
 
+/* Animacion que hace un movimiento de un lado para el otro en el modal del juego */
 @keyframes swing {
     20% {
         -webkit-transform: rotate3d(0, 0, 1, 15deg);
@@ -313,6 +320,7 @@ img{
     }
 }
 
+/* Animacion que simula la caida de la imagen que tapa el pescebre */
 @keyframes slideOutDown {
     0% {
         -webkit-transform: translateY(0);
