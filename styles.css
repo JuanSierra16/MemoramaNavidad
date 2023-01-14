@@ -217,6 +217,8 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     overflow: hidden;
 }
 
+/* Clase para aplirle estilos a la columna que contiene el contenido en el modal 
+    cuando se encuentra una pareja. */
 .columna-contenido{
     font-size: 18px;
     padding: 10px 20px 30px;
@@ -227,12 +229,16 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     background-size: 18%, 30%;
     background-position: top 7% left 4%, top right -5%;
     background-repeat: no-repeat;
-    background-color: var(--color1);
+    background-color: var(--color1);/* Se le aplica el color al fondo que esta guardado en la variable color1 */
     background-blend-mode: normal;
     position: relative;
 }
 
-/* clases para los elementos del modal del pescebre */
+
+/*--------------------------------------------------------------------
+Clases para aplicarle estilos a las cubiertas de la imagen del pesebre
+    se les aplica un posicionamiento especifico para cada una
+---------------------------------------------------------------------*/
 .modal-baltazar{
     position: absolute;
     left: 25.3%;
@@ -296,8 +302,10 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     width: 20%;
     height: 60.2%;
 }
+/*---------------------------------------------------*/
 
-
+/* selector utilizado para aplicarle la animacion a las cubiertas de la imgane del pesebre,
+para que cuando se encuentre la pareja la cubierta se deslice y haga el efecto de que se cae */
 .show-item {
     animation: swing 1s .5s both ease, slideOutDown 1s ease 1.5s 1 normal forwards;
     transform-origin: top center;
@@ -345,6 +353,8 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     }
 }
 
+/* Clase para que al aplicarsela a un elemento no se muestre en la pagina, hasta que le cambiemos de nuevo
+su display */
 .none {
     display: none;
 }
@@ -371,6 +381,8 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
 }
 /* ----------------------------------------- */
 
+/* Selector para ponerle estilos al titulo del modal del juego, el que sale cuando se
+    encuentra una pareja */
 .modal-titulo{
     font-family: var(--fuenteTitulo);
     font-size: 32px;
@@ -380,10 +392,12 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     text-align: center;
 }
 
+/* Clase para aplicarsela a los modales cuando se quieran ocultar */
 .hide-modal{
     display: none;
 }
 
+/* Estilos para que el boton del modal de comenzar se vea agradable */
 .btn-comenzar{
     animation: bounceIn 1.5s backwards;
     --btnComenzar__color: white;
@@ -405,6 +419,7 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     text-decoration: none;
 }
 
+/* Estilos aplicados al contenido del header */
 .header-content{
     color: #5fa3a5;
     font-weight: bold;
@@ -415,10 +430,13 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
 
 }
 
+/* Se le cambia el color de fondo a la segunda columna del header */
 .second-col{
     background: #e6f9f4;
 }
 
+/* Clase para agregarle estilos al logo que aparece en la parte superior
+izquierda de la pagina */
 .logo{
     border: none;
     max-width: 100%;
@@ -426,6 +444,7 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     margin: auto;
 }
 
+/* Clase para darle estilos a todo el contenedor content, es decir el que va en el main y contiene las tarjetas */
 .content{
     background-color: var(--color_background);
     background-image: url(https://www.escueladidactica.com/navidad/2022/img/estrellas-bg.png), url(https://www.escueladidactica.com/navidad/2022/img/background.png);
@@ -435,6 +454,7 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     padding-bottom: 80px;
 }
 
+/* Se le aplica posicionamiento al contenido de game, es decir a las tarjetas */
 .game{
     display: flex;
     flex-direction: row;
@@ -447,16 +467,18 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     height: 1000px;
 }
 
+/* Para que cada tarjeta tenga un ancho del 25% con respecto a su contenendor padre, es decir el que tiene la clase game */
 .carta {
     width: 25%;
 }
 
+/* Clase para darle estilos al contenedor de las tarjetas */
 .game *{
 	background-color: transparent;
 	border: none;
 }
 
-
+/* Se le agrega la cubierta a la carta y se ajusta su tamaño */
 .card-front{
     background-image: url(img/tarjeta_cubierta.png);
     background-color: transparent;
@@ -467,6 +489,7 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     height: 100%;
 }
 
+/* Estilos para la parte donde va la imagen del santo de la carta */
 .card-back {
     background-color: transparent;
     background-size: contain;
@@ -477,6 +500,7 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     transform: rotateY(180deg);
 }
 
+/* Estilos para el contenedor de la carta */
 .card{
     margin: 0;
     padding: 0;
@@ -485,6 +509,7 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     position: relative;
 }
 
+/* Estilos para el contenedor que sirve para girar la carta */
 .card-inner{
     width: 100%;
     height: 100%;
@@ -494,10 +519,12 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     position: relative;
 }
 
+/* Clase utilizada para girar la carta cuando es necesario en el juego */
 .card-inner.is-flipped{
     transform: rotateY(180deg);
 }
 
+/* Estilos para las caras de las cartas */
 .card-face{
     position: absolute;
     width: 100%;
@@ -507,6 +534,7 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     overflow: hidden;
 }
 
+/* Estilos para los botones de la izquierda que contienen las redes sociales */
 .botonesizquierda{
     position: fixed;
     top: 50%;
@@ -515,6 +543,7 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     line-height: 1.5;
 }
 
+/* Estilos para que el boton se vea bonito */
 .btn2-circulo{
     width: 31px;
     height: 31px;
@@ -526,13 +555,13 @@ dentro del modal del juego, se le da un posicionamiento, un ancho, un alto y una
     position: relative;
 }
 
+/* Estilos para darle una transicion al boton */
 .btn2-circulo:hover{
     opacity: 100%;
     transition: 0.5s;
 }
 
-
-
+/* Estilos aplicados al footer */
 footer{
     position: fixed;
     z-index: 1;
@@ -554,6 +583,8 @@ footer{
     position: relative;
 }
 
+/* Estilos dados al boton para cuando el mouse este encima de el se le cambie su color, su opacidad y se le aplique una
+transicion */
 .btn-circulo:hover{
     color: #0056b3;
     opacity: 100%;
